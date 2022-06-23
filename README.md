@@ -1,2 +1,3 @@
-# KIIT_chatbot
-Create a chatbot for kiit website
+# cafe chatbot
+Create a chatbot for cafe
+

@@ -1,3 +1,2 @@
 # cafe chatbot
-Create a chatbot for cafe
-
+Chatbot for a cafe.

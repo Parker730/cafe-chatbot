@@ -1,0 +1,16 @@
+{
+  "arch": null,
+  "build": "pyhd3eb1b0_1",
+  "build_number": 1,
+  "depends": [
+    "python >=3.5",
+    "sphinx"
+  ],
+  "license": "BSD-3-Clause",
+  "name": "numpydoc",
+  "noarch": "python",
+  "platform": null,
+  "subdir": "noarch",
+  "timestamp": 1605117457704,
+  "version": "1.1.0"
+}

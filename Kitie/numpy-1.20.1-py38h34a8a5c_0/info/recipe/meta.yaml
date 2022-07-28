@@ -1,0 +1,86 @@
+# This file created by conda-build 3.21.4
+# ------------------------------------------------
+
+package:
+  name: numpy
+  version: 1.20.1
+source:
+  patches:
+    - patches/0001-Obtain-and-prefer-custom-gfortran-from-env-variable.patch
+    - patches/0002-intel_mkl-version.patch
+    - patches/0003-intel_init_mkl.patch
+    - patches/0004-disable-autorun-for-cmd-test.patch
+    - patches/0005-array_coercion_fix.patch
+    - patches/0006-popcnt_fix.patch
+  sha256: 9bf51d69ebb4ca9239e55bedc2185fe2c0ec222da0adee7ece4125414676846d
+  url: https://github.com/numpy/numpy/releases/download/v1.20.1/numpy-1.20.1.tar.gz
+build:
+  force_use_keys:
+    - python
+  noarch: false
+  noarch_python: false
+  number: '0'
+  string: py38h34a8a5c_0
+requirements:
+  build:
+    - vs2017_win-64 19.16.27032.1 hb4161e2_3
+    - vswhere 2.8.4 haa95532_0
+  host:
+    - blas 1.0 mkl
+    - ca-certificates 2021.4.13 haa95532_1
+    - intel-openmp 2021.2.0 haa95532_616
+    - mkl 2021.2.0 haa95532_296
+    - mkl-devel 2021.2.0 hbf681c9_296
+    - mkl-include 2021.2.0 haa95532_296
+    - openssl 1.1.1k h2bbff1b_0
+    - python 3.8.8 hdbf39b2_5
+    - sqlite 3.35.4 h2bbff1b_0
+    - vc 14.2 h21ff451_1
+    - vs2015_runtime 14.27.29016 h5e58377_2
+  run:
+    - blas 1.0 mkl
+    - mkl >=2021.2.0,<2022.0a0
+    - mkl-service >=2.3.0,<3.0a0
+    - mkl_fft
+    - mkl_random
+    - numpy-base 1.20.1 py38haf7ebc8_0
+    - python >=3.8,<3.9.0a0
+    - vc >=14.1,<15.0a0
+    - vs2015_runtime >=14.16.27012,<15.0a0
+test:
+  commands:
+    - f2py -h
+    - python -c "import numpy; numpy.show_config()"
+    - set OPENBLAS_NUM_THREADS=1
+    - pytest -vvv --pyargs numpy -k "not (_not_a_real_test or test_overrides)" --durations=0
+  imports:
+    - numpy
+    - numpy.linalg.lapack_lite
+  requires:
+    - hypothesis
+    - intel-fortran_win-64 2019.0.0.*
+    - pip
+    - pytest
+    - vs2017_win-64
+about:
+  description: 'NumPy is the fundamental package needed for scientific computing with
+    Python.
+
+    '
+  dev_source_url: https://github.com/numpy/numpy/tree/master/doc
+  dev_url: https://github.com/numpy/numpy
+  doc_url: https://docs.scipy.org/doc/numpy/reference/
+  home: http://numpy.scipy.org/
+  license: BSD 3-Clause
+  license_file: LICENSE.txt
+  summary: Array processing for numbers, strings, records, and objects.
+extra:
+  copy_test_source_files: true
+  final: true
+  recipe-maintainers:
+    - chenghlee
+    - jakirkham
+    - msarahan
+    - ocefpaf
+    - pelson
+    - rgommers
